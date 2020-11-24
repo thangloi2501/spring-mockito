@@ -25,7 +25,7 @@ public class FlowerControllerUnitTest {
 
     @Test
     public void isAFlower_withMockito_OK() {
-        when(flowerService.analize(eq("violetta"))).thenReturn("Flower");
+        when(flowerService.analize("violetta")).thenReturn("Flower");
 
         String response = flowerController.isAFlower("violetta");
 

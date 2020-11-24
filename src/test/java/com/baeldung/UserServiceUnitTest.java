@@ -3,6 +3,7 @@ package com.baeldung;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest(classes = MocksApplication.class)
 public class UserServiceUnitTest {
 
-    @Autowired
+    @InjectMocks
     private UserService userService;
 
     @Autowired
+    private UserService userServiceReal;
+
+    @Mock
     private NameService nameService;
 
     @Test
@@ -27,6 +31,10 @@ public class UserServiceUnitTest {
 
         String testName = userService.getUserName("SomeId");
 
+        int age = userServiceReal.getAge(10);
+
         Assert.assertEquals("Mock user name", testName);
+
+        Assert.assertEquals(10, age);
     }
 }
