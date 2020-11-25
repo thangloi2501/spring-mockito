@@ -29,6 +29,9 @@ public class UserServiceUnitTest {
     public void whenUserIdIsProvided_thenRetrievedNameIsCorrect() {
         Mockito.when(nameService.getUserName("SomeId")).thenReturn("Mock user name");
 
+
+        Mockito.when(nameService.getUserName("")).thenThrow(new RuntimeException("sss"));
+
         String testName = userService.getUserName("SomeId");
 
         int age = userServiceReal.getAge(10);
